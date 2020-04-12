@@ -38,8 +38,6 @@ bool Game::init() {
         return false;
     }
 
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-
     running = true;
     return true;
 }
@@ -71,8 +69,22 @@ void Game::update() {
 }
 
 void Game::render() {
-    SDL_RenderClear(renderer);
+    clear();
+    draw_background();
     SDL_RenderPresent(renderer);
+}
+
+void Game::draw_background() {
+    SDL_Rect r {50, 50, 50, 50};
+
+    SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+    SDL_RenderFillRect(renderer, &r);
+}
+
+void Game::clear() {
+    // clear everything
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+    SDL_RenderClear(renderer);
 }
 
 Game::~Game() = default;

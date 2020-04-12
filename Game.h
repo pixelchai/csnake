@@ -31,6 +31,10 @@ private:
     SDL_Renderer* renderer;
 
     Field* field;
+
+    void draw_background();
+
+    void clear();
 };
 
 
