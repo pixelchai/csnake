@@ -8,15 +8,25 @@ Game::Game() {
     running = false;
     window = nullptr;
     renderer = nullptr;
+    field = nullptr;
 }
 
 bool Game::init() {
+    // model set up
+    field = new Field();
+
+    // SDL setup
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         printf("SDL2 initialisation failed: %s\n", SDL_GetError());
         return false;
     }
 
-    window = SDL_CreateWindow("CSnake", 0, 0, 200, 100, 0);
+    window = SDL_CreateWindow("CSnake",
+            0,
+            0,
+            field->get_width() * cell_width,
+            field->get_height() * cell_width,
+            0);
     if (window == NULL) {
         std::printf("Window creation failed: %s\n", SDL_GetError());
         return false;
@@ -28,6 +38,8 @@ bool Game::init() {
         return false;
     }
 
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+
     running = true;
     return true;
 }
@@ -37,9 +49,6 @@ bool Game::is_running() {
 }
 
 void Game::run() {
-    const int frame_rate{5};
-    const int frame_time{1000 / frame_rate}; // amount of ms each frame is to be shown
-
     Uint32 initial_time;
     Uint32 time_elapsed;
 
@@ -62,7 +71,8 @@ void Game::update() {
 }
 
 void Game::render() {
-
+    SDL_RenderClear(renderer);
+    SDL_RenderPresent(renderer);
 }
 
 Game::~Game() = default;
