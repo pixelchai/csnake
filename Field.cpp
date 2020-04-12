@@ -35,3 +35,5 @@ void Field::spawn_food() {
 void Field::step_snake() {
 
 }
+
+Field::~Field() = default;

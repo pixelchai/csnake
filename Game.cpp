@@ -65,7 +65,7 @@ void Game::run() {
 }
 
 void Game::update() {
-
+    ++bruh;
 }
 
 void Game::render() {
@@ -75,7 +75,7 @@ void Game::render() {
 }
 
 void Game::draw_background() {
-    SDL_Rect r {50, 50, 50, 50};
+    SDL_Rect r {static_cast<int>(0+bruh*time_step*15), 50, 50, 50};
 
     SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
     SDL_RenderFillRect(renderer, &r);
