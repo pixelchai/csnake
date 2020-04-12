@@ -16,7 +16,7 @@ bool Game::init() {
         return false;
     }
 
-    window = SDL_CreateWindow("CSnake", 0, 0, 100, 100, 0);
+    window = SDL_CreateWindow("CSnake", 0, 0, 200, 100, 0);
     if (window == NULL) {
         std::printf("Window creation failed: %s\n", SDL_GetError());
         return false;

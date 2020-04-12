@@ -14,4 +14,4 @@ find_package(SDL2 REQUIRED)
 include_directories(csnake ${SDL2_INCLUDE_DIRS})
 
 add_executable(csnake main.cpp Game.cpp Game.h)
-target_link_libraries(csnake ${SDL2_LIBRARIES})
+target_link_libraries(csnake SDL2::SDL2) # not sure why SDL2::SDL2, but it works (${SDL2_LIBRARIES} did not work)
